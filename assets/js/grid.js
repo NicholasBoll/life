@@ -12,11 +12,18 @@ var Grid = (function(){
   // methods
   util.extend(Grid.prototype, {
 
-    getIndex: function(x, y) {
+    getIndex: function (x, y) {
       if (x < 0 || y < 0 || x >= this.width || y >= this.height) {
         throw new Error('Out of bounds');
       }
       return x + y * this.width;
+    },
+
+    getCoords: function (index) {
+      return {
+        x: 1,
+        y: 1
+      };
     },
 
     parseFromArray: function (grid) {
@@ -24,6 +31,20 @@ var Grid = (function(){
       for (var i=0; i<grid.length; i++) {
         this.grid[i] = new Cell(+grid[i]);
       }
+    },
+
+    getNeighbors: function (index) {
+
+    },
+
+    nextGeneration: function () {
+
+      this.grid.forEach(function (cell, index) {
+
+        var neighbors = this.getNeighbors(index);
+
+        cell.getNextState(neighbors);
+      }, this);
     }
   });
 

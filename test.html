@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <title>Life</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+  <div id="main">
+    <!-- placholder for application -->
+  </div>
+<textarea id="input" rows="5" cols="9">0,1,0,0,0
+1,0,0,1,1
+1,1,0,0,1
+0,1,0,0,0
+1,0,0,0,1</textarea>
+<textarea id="output" rows="5" cols="9"></textarea>
+  <button id="next">Next</button>
+  <script src="./assets/js/util.js"></script>
+  <script src="./assets/js/cell.js"></script>
+  <script src="./assets/js/grid.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/assert.js"></script>
+  <script>
+    // setup
+    var grid = new Grid(5, 5);
+
+    assert.isEqual('Make sure the width was set properly', grid.width, 5);
+    assert.isEqual('Make sure the height was set properly', grid.height, 5);
+    assert.isEqual('Get index works properly', grid.getIndex(1, 2), 11);
+  </script>
+</body>
+</html>

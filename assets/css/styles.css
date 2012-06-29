@@ -1,4 +1,9 @@
 
-body {
-  color: grey;
+
+.passed {
+  color: green;
+}
+
+.failed {
+  color: red;
 }
