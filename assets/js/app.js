@@ -4,7 +4,7 @@ var App = (function(){
   "use strict";
 
   var inputGrid = new Grid(5, 5),
-      board = new Board(document.getElementById('main')),
+      board = new Board(document.getElementById('main'), inputGrid),
       generation = 1;
 
   var parseInput = function () {
@@ -18,17 +18,15 @@ var App = (function(){
   // next button event listener
   document.getElementById('next').addEventListener('click', function () {
     // Setup the inputGrid
-    inputGrid.parseFromArray(parseInput());
+    //inputGrid.parseFromArray(parseInput());
 
-    inputGrid = inputGrid.nextGeneration();
-
-    document.getElementById('input').value = inputGrid.toString();
+    inputGrid.nextGeneration();
     board.draw(inputGrid);
   });
 
 
-  inputGrid.parseFromArray(parseInput());
-  board.draw(inputGrid);
+  //inputGrid.parseFromArray(parseInput());
+  board.draw();
 
   return {
     inputGrid: inputGrid

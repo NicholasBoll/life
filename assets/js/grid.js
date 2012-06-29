@@ -51,6 +51,12 @@ var Grid = (function(){
       }
     },
 
+    toggleCell: function (x, y) {
+
+      var cell = this.getCellAtCoord(x, y);
+      cell.setState(!cell.getState());
+    },
+
     getNeighbors: function (index) {
       var neighbors = [],
           coord = this.getCoords(index);
@@ -79,7 +85,15 @@ var Grid = (function(){
         next.setCellByIndex(index, cell.getNextState(neighbors));
       }, this);
 
-      return next;
+      this.clone(next);
+
+      return this;
+    },
+
+    clone: function (sourceGrid) {
+      for (var i=0; i<this.grid.length; i++) {
+        this.grid[i] = sourceGrid.grid[i];
+      }
     },
 
     toString: function () {
