@@ -10,6 +10,9 @@
 
 #main {
   width: 800px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .pixel {
