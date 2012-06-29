@@ -3,7 +3,7 @@
 var App = (function(){
   "use strict";
 
-  var inputGrid = new Grid(5, 5),
+  var inputGrid = new Grid(50, 50),
       board = new Board(document.getElementById('main'), inputGrid),
       generation = 1;
 

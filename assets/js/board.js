@@ -1,4 +1,4 @@
-/*globals util, Grid*/
+/*globals util, Grid, document*/
 
 var Board = (function(){
   "use strict";
@@ -14,7 +14,8 @@ var Board = (function(){
   util.extend(Board.prototype, {
 
     init: function () {
-      this.element.addEventListener('click', this.toggleCell.bind(this));
+      this.element.addEventListener('mousedown', this.mouseDown.bind(this), false);
+      //this.element.addEventListener('click', this.toggleCell.bind(this));
     },
 
     draw: function () {
@@ -31,6 +32,54 @@ var Board = (function(){
       });
 
       this.element.innerHTML = html.join('');
+    },
+
+    mouseDown: function (e) {
+      console.log('mousedown');
+      var dataCoords = e.target.getAttribute('data-coords');
+
+      // Make sure we have coords. If we don't, this is not a cell
+      if (!dataCoords) return;
+
+      var coords = dataCoords.split(','),
+          cell = this.grid.getCellAtCoord(+coords[0], +coords[1]);
+
+      this.cellState = !cell.getState();
+      cell.setState(this.cellState);
+
+      // add event listeners
+      this.mouseUpBinding = this.mouseUp.bind(this); // reference the binding for later removal
+      document.addEventListener('mouseup', this.mouseUpBinding, false);
+
+      this.mouseMoveBinding = this.mouseMove.bind(this);
+      document.addEventListener('mousemove', this.mouseMoveBinding, false);
+
+      this.draw();
+    },
+
+    mouseUp: function (e) {
+      console.log('mouseUp');
+      document.removeEventListener('mouseup', this.mouseUpBinding, false);
+      document.removeEventListener('mousemove', this.mouseMoveBinding, false);
+
+      this.mouseUpBinding = null;
+      this.mouseMoveBinding = null;
+    },
+
+    mouseMove: function (e) {
+      var dataCoords = e.target.getAttribute('data-coords');
+
+      if (!dataCoords) return;
+
+      var coords = dataCoords.split(','),
+          cell = this.grid.getCellAtCoord(+coords[0], +coords[1]);
+
+      // set the state and draw only if we need to
+      if (cell.getState() !== this.cellState) {
+      
+        cell.setState(this.cellState);
+        this.draw();
+      }
     },
 
     toggleCell: function (e) {
