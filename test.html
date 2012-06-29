@@ -27,7 +27,9 @@
     assert.isEqual('Make sure the width was set properly', grid.width, 5);
     assert.isEqual('Make sure the height was set properly', grid.height, 5);
     assert.isEqual('getIndex works properly', grid.getIndex(1, 2), 11);
+    assert.isEqual('getIndex works properly', grid.getIndex(0, 4), 20);
     assert.isEqual('getCoords works properly', grid.getCoords(11), {x:1,y:2}, true);
+    assert.isEqual('getCoords works properly', grid.getCoords(20), {x:0,y:4}, true);
   </script>
 </body>
 </html>

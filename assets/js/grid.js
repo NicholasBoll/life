@@ -20,9 +20,11 @@ var Grid = (function(){
     },
 
     getCoords: function (index) {
+      var x = index % this.width,
+          y = (index - x) / this.width;
       return {
-        x: 1,
-        y: 1
+        x: x,
+        y: y
       };
     },
 

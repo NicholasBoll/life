@@ -45,7 +45,7 @@ var assert = (function(){
       }
     }
 
-    return str.join('')
+    return '{'+str.join(',')+'}';
   };
 
   return {
