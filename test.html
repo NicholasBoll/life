@@ -23,6 +23,7 @@
   <script>
     // setup
     var grid = new Grid(5, 5);
+    grid.parseFromArray('0,1,0,0,0,1,0,0,1,1,1,1,0,0,1,0,1,0,0,0,1,0,0,0,1'.split(','))
 
     assert.isEqual('Make sure the width was set properly', grid.width, 5);
     assert.isEqual('Make sure the height was set properly', grid.height, 5);
@@ -30,6 +31,7 @@
     assert.isEqual('getIndex works properly', grid.getIndex(0, 4), 20);
     assert.isEqual('getCoords works properly', grid.getCoords(11), {x:1,y:2}, true);
     assert.isEqual('getCoords works properly', grid.getCoords(20), {x:0,y:4}, true);
+    assert.isEqual('Next generation is correct', grid.nextGeneration().toString(), '0,0,0,0,0\n1,0,1,1,1\n1,1,1,1,1\n0,1,0,0,0\n0,0,0,0,0')
   </script>
 </body>
 </html>

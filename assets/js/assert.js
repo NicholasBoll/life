@@ -39,7 +39,6 @@ var assert = (function(){
     if (!deep) {
       return obj;
     } else {
-      console.log(obj);
       for (var i in obj) {
         str.push(i+':'+obj[i]);
       }
