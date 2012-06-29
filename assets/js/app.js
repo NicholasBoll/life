@@ -1,9 +1,10 @@
-/*globals document, Cell, Grid*/
+/*globals document, Cell, Grid, Board*/
 
 var App = (function(){
   "use strict";
 
   var inputGrid = new Grid(5, 5),
+      board = new Board(document.getElementById('main')),
       generation = 1;
 
   var parseInput = function () {
@@ -14,20 +15,20 @@ var App = (function(){
     return grid;
   };
 
-  var exportOutput = function () {
-    
-    var output = document.getElementById('output');
-
-    output.value = inputGrid.nextGeneration().toString();
-  };
-
   // next button event listener
   document.getElementById('next').addEventListener('click', function () {
     // Setup the inputGrid
     inputGrid.parseFromArray(parseInput());
 
-    exportOutput();
+    inputGrid = inputGrid.nextGeneration();
+
+    document.getElementById('input').value = inputGrid.toString();
+    board.draw(inputGrid);
   });
+
+
+  inputGrid.parseFromArray(parseInput());
+  board.draw(inputGrid);
 
   return {
     inputGrid: inputGrid

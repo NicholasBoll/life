@@ -26,8 +26,6 @@ var Cell = (function(){
         }
       }, this);
 
-      console.log(aliveCells);
-
       // if this cell is alive
       if (this.getState()) {
         // under-population

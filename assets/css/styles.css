@@ -7,3 +7,23 @@
 .failed {
   color: red;
 }
+
+#main {
+  width: 800px;
+}
+
+.pixel {
+  border: solid 1px grey;
+  float: left;
+  width: 9px;
+  height: 9px;
+}
+
+.row {
+  clear: left;
+  overflow: hidden;
+}
+
+.pixel.on {
+  background-color: black;
+}

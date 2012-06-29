@@ -18,7 +18,6 @@ var Grid = (function(){
       for (var i=0; i<this.width * this.height; i++) {
         this.grid[i] = new Cell(0);
       }
-      console.log('cells', this.grid);
     },
 
     getIndex: function (x, y) {
@@ -84,6 +83,18 @@ var Grid = (function(){
     },
 
     toString: function () {
+      var rows = this.toArray(),
+          grid = [];
+
+      for (var row = 0; row<rows.length; row++) {
+        grid.push(rows[row].join(','));
+      }
+
+      return grid.join('\n');
+
+    },
+
+    toArray: function () {
       var row,
           grid = [];
 
@@ -93,11 +104,10 @@ var Grid = (function(){
         for (var x = 0; x < this.width; x++) {
           row.push(this.getCellAtCoord(x, y).getState());
         }
-        grid.push(row.join(','));
+        grid.push(row);
       }
 
-      return grid.join('\n');
-
+      return grid;
     }
   });
 
